@@ -17,15 +17,26 @@ public class Library {
         if (bookCounter < books.length) {
             books[bookCounter] = book;
             bookCounter++;
-            System.out.println("The book " + book + " was added to the library.");
+            System.out.println("The book " + book.getTitle() + " was added to the library.");
         } else
             System.out.println("The library max has been reached, you can't add more books.");
     }
 
     public void showBooks() {
-        System.out.println("Books list:");
+        System.out.println("\nBooks list:");
         for (Book actualBook : books) {
-            System.out.println("Title: " + actualBook.getTitle());
+            if (actualBook != null) {
+                System.out.println("Title: " + actualBook.getTitle());
+            }
+        }
+    }
+
+    public void showUnavailableBooks() {
+        System.out.println("Unavailable books: ");
+        if (book.borrowedBook()) {
+            for (Book unavailableBook : books) {
+                System.out.println(unavailableBook);
+            }
         }
     }
 
@@ -33,7 +44,7 @@ public class Library {
         if (userCounter < users.length) {
             users[userCounter] = user;
             userCounter++;
-            System.out.println("User " + user + " successfully added.");
+            System.out.println("User " + user.getName() + " successfully added.");
         } else
             System.out.println("You can't add more users");
     }

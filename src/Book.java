@@ -1,8 +1,7 @@
-public abstract class Book {
+public class Book {
 
     private String title;
     private String author;
-    private String bookIdentifier;
     private boolean available;
 
     public Book(String title, String author) {
@@ -18,6 +17,13 @@ public abstract class Book {
         return author;
     }
 
+    public String isAvailable() {
+        if (available) {
+            return "The Book is available";
+        } else
+            return "The Book isn't available";
+    }
+
     public void setAvailable(boolean available) {
         this.available = available;
     }
@@ -30,11 +36,10 @@ public abstract class Book {
         return available = true;
     }
 
-    protected void bookDetails(Book book) {
-        System.out.println("Title: " + this.title + "\n" +
-                "Author: " + this.author + "\n" +
-                "ISBN: " + this.bookIdentifier + "\n" +
-                "Availability: " + this.available);
-    }
 
+    protected void bookDetails() {
+        System.out.println("\nTitle: " + getTitle() + "\n" +
+                "Author: " + getAuthor() + "\n" +
+                "Availability: " + isAvailable());
+    }
 }
