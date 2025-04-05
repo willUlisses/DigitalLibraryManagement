@@ -31,8 +31,8 @@ public class Library {
         }
     }
 
-    public void showUnavailableBooks() {
-        System.out.println("Unavailable books: ");
+    public void showUnavailableBooks(Library library) {
+        System.out.println("Unavailable books from " + library + ": ");
         if (book.borrowedBook()) {
             for (Book unavailableBook : books) {
                 System.out.println(unavailableBook);
@@ -58,6 +58,10 @@ public class Library {
 
     public void setBookUnavailable(Book book) {
         book.setAvailable(false);
+    }
+
+    public void setBookAvailable(Book book) {
+        book.setAvailable(true);
     }
 
 }

@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Tests {
     public static void main(String[] args) {
 
@@ -14,6 +16,7 @@ public class Tests {
         book1.borrowedBook();
 
         book1.bookDetails();
+
 
     }
 }

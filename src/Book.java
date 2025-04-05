@@ -1,20 +1,20 @@
 public class Book {
 
-    private String title;
-    private String author;
+    private final String TITLE;
+    private final String AUTHOR;
     private boolean available;
 
     public Book(String title, String author) {
-        this.title = title;
-        this.author = author;
+        this.TITLE = title;
+        this.AUTHOR = author;
     }
 
     public String getTitle() {
-        return title;
+        return TITLE;
     }
 
     public String getAuthor() {
-        return author;
+        return AUTHOR;
     }
 
     public String isAvailable() {
