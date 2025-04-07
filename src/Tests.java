@@ -20,10 +20,9 @@ public class Tests {
 
         user1.showUserBorrows();
 
-        user1.returnBook(book1, library);
+        user1.returnBook(book2, library);
 
         user1.showUserBorrows();
-
 
 
 
