@@ -6,12 +6,14 @@ public class User {
     private int userId;
     private Book book;
     private Library library;
-    private final Book[] borrowedBooks = new Book[5];
+    private final Book[] borrowedBooks;
     private int borrowsCounter;
 
     public User(String name, int userId) {
         this.name = name;
         this.userId = userId;
+        this.borrowedBooks = new Book[5];
+        this.borrowsCounter = 0;
     }
 
     public int getUserId() {
@@ -23,7 +25,7 @@ public class User {
     }
 
     public void borrowBook(Book book, Library library) {
-        if (book.returnedBook() && borrowsCounter < borrowedBooks.length) {
+        if (book.getAvailable() && borrowsCounter < borrowedBooks.length) {
             borrowedBooks[borrowsCounter] = book;
             borrowsCounter++;
             library.setBookUnavailable(book);
@@ -35,14 +37,12 @@ public class User {
     }
 
     public void showUserBorrows() {
-        for (Book borrow : borrowedBooks)
+        System.out.println("\nYou've borrowed these books: ");
+        for (Book borrow : borrowedBooks) {
             if (borrow != null) {
-                System.out.println("\nYou've borrowed these books: ");
                 System.out.println(borrow.getTitle());
-            } else if (borrowedBooks[0] == null) {
-                System.out.println("You don't have any borrowed book in your account");
-                break;
             }
+        }
     }
 
     public void returnBook(Book book, Library library) {

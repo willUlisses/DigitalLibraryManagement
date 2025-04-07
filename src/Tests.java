@@ -12,17 +12,19 @@ public class Tests {
         library.addBook(book2);
 
         library.showBooks();
-        book1.bookDetails();
-
 
         User user1 = new User("Josué", 1);
+
         user1.borrowBook(book1, library);
+        user1.borrowBook(book2, library);
 
         user1.showUserBorrows();
 
         user1.returnBook(book1, library);
 
         user1.showUserBorrows();
+
+
 
 
     }

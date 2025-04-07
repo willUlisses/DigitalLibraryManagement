@@ -29,12 +29,8 @@ public class Book {
         this.available = available;
     }
 
-    protected boolean borrowedBook() {
-        return available = false;
-    }
-
-    protected boolean returnedBook() {
-        return available = true;
+    public boolean getAvailable() {
+        return available;
     }
 
 

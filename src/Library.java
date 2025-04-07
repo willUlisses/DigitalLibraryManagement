@@ -33,7 +33,7 @@ public class Library {
 
     public void showUnavailableBooks(Library library) {
         System.out.println("Unavailable books from " + library + ": ");
-        if (book.borrowedBook()) {
+        if (book.getAvailable()) {
             for (Book unavailableBook : books) {
                 System.out.println(unavailableBook);
             }
