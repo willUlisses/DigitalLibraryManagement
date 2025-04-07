@@ -47,7 +47,9 @@ public class User {
 
     public void returnBook(Book book, Library library) {
         for (borrowsCounter = 0; borrowsCounter < borrowedBooks.length - 1; borrowsCounter++) {
-            if (borrowedBooks[borrowsCounter] == book) {
+            if (borrowedBooks[0] == book) {
+                borrowedBooks[0] = null;
+            } else if (borrowedBooks[borrowsCounter] == book) {
                 borrowedBooks[borrowsCounter] = borrowedBooks[borrowsCounter + 1];
             }
         }
