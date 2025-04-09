@@ -1,4 +1,4 @@
-public class Book {
+public abstract class Book {
 
     private final String TITLE;
     private final String AUTHOR;
@@ -34,9 +34,7 @@ public class Book {
     }
 
 
-    protected void bookDetails() {
-        System.out.println("\nTitle: " + getTitle() + "\n" +
-                "Author: " + getAuthor() + "\n" +
-                "Availability: " + isAvailable());
-    }
+    protected abstract void bookDetails();
+
+
 }
