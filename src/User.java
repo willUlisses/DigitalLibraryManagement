@@ -1,19 +1,16 @@
 import java.util.Arrays;
+import java.util.Objects;
 
 public class User {
 
     private String name;
     private int userId;
-    private Book book;
-    private Library library;
-    private final Book[] borrowedBooks;
-    private int borrowsCounter;
+    private String email;
 
-    public User(String name, int userId) {
+    public User(String name, int userId, String email) {
         this.name = name;
         this.userId = userId;
-        this.borrowedBooks = new Book[5];
-        this.borrowsCounter = 0;
+        this.email = email;
     }
 
     public int getUserId() {
@@ -24,36 +21,41 @@ public class User {
         return name;
     }
 
-    public void borrowBook(Book book, Library library) {
-        if (book.getAvailable() && borrowsCounter < borrowedBooks.length) {
-            borrowedBooks[borrowsCounter] = book;
-            borrowsCounter++;
-            library.setBookUnavailable(book);
-            System.out.println("\nThe book " + book.getTitle() + " was successfully borrowed");
-        }
-        else if (borrowsCounter > borrowedBooks.length) {
-            System.out.println("You can't borrow more than 5 books");
-        }
+    public String getEmail() {
+        return email;
     }
 
-    public void showUserBorrows() {
-        System.out.println("\nYou've borrowed these books: ");
-        for (Book borrow : borrowedBooks) {
-            if (borrow != null) {
-                System.out.println(borrow.getTitle());
-            }
-        }
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public void returnBook(Book book, Library library) {
-        for (borrowsCounter = 0; borrowsCounter < borrowedBooks.length - 1; borrowsCounter++) {
-            if (borrowedBooks[0] == book) {
-                borrowedBooks[0] = null;
-            } else if (borrowedBooks[borrowsCounter] == book) {
-                borrowedBooks[borrowsCounter] = borrowedBooks[borrowsCounter + 1];
-            }
-        }
-        library.setBookAvailable(book);
-        System.out.println("\nThe book has been returned to the library.");
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        User user = (User) o;
+        return Objects.equals(this.userId, user.userId);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(userId);
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "name='" + name + '\'' +
+                ", userId=" + userId +
+                ", email='" + email + '\'' +
+                '}';
     }
 }

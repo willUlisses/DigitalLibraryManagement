@@ -1,12 +1,16 @@
+import java.util.Objects;
+
 public abstract class Book {
 
     private final String TITLE;
     private final String AUTHOR;
     private boolean available;
+    private final Integer ISBN;
 
-    public Book(String title, String author) {
+    public Book(String title, String author, Integer isbn) {
         this.TITLE = title;
         this.AUTHOR = author;
+        this.ISBN = isbn;
         this.available = true;
     }
 
@@ -33,8 +37,33 @@ public abstract class Book {
         return available;
     }
 
+    public Integer getISBN() {
+        return ISBN;
+    }
 
-    protected abstract void bookDetails();
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || this.getClass() != o.getClass()) return false;
+        Book book = (Book) o;
+        return Objects.equals(this.ISBN, book.ISBN);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(ISBN);
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "TITLE='" + TITLE + '\'' +
+                ", AUTHOR='" + AUTHOR + '\'' +
+                ", available=" + available +
+                ", ISBN=" + ISBN +
+                '}';
+    }
 
 
 }
