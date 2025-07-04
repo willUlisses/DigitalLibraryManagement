@@ -5,9 +5,9 @@ public abstract class Book {
     private final String TITLE;
     private final String AUTHOR;
     private boolean available;
-    private final Integer ISBN;
+    private final String ISBN;
 
-    public Book(String title, String author, Integer isbn) {
+    public Book(String title, String author, String isbn) {
         this.TITLE = title;
         this.AUTHOR = author;
         this.ISBN = isbn;
@@ -37,7 +37,7 @@ public abstract class Book {
         return available;
     }
 
-    public Integer getISBN() {
+    public String getISBN() {
         return ISBN;
     }
 
