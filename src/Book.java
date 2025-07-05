@@ -1,17 +1,20 @@
 import java.util.Objects;
 
-public abstract class Book {
+public class Book {
 
     private final String TITLE;
     private final String AUTHOR;
     private boolean available;
-    private final String ISBN;
+    private String isbn;
 
-    public Book(String title, String author, String isbn) {
+    public Book(String title, String author) {
         this.TITLE = title;
         this.AUTHOR = author;
-        this.ISBN = isbn;
         this.available = true;
+    }
+
+    public void setIsbn(String isbn) {
+        this.isbn = isbn;
     }
 
     public String getTitle() {
@@ -37,8 +40,8 @@ public abstract class Book {
         return available;
     }
 
-    public String getISBN() {
-        return ISBN;
+    public String getIsbn() {
+        return isbn;
     }
 
 
@@ -47,12 +50,12 @@ public abstract class Book {
         if (this == o) return true;
         if (o == null || this.getClass() != o.getClass()) return false;
         Book book = (Book) o;
-        return Objects.equals(this.ISBN, book.ISBN);
+        return Objects.equals(this.isbn, book.isbn);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ISBN);
+        return Objects.hash(isbn);
     }
 
     @Override
@@ -61,7 +64,7 @@ public abstract class Book {
                 "TITLE='" + TITLE + '\'' +
                 ", AUTHOR='" + AUTHOR + '\'' +
                 ", available=" + available +
-                ", ISBN=" + ISBN +
+                ", ISBN=" + isbn +
                 '}';
     }
 

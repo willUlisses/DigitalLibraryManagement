@@ -8,8 +8,13 @@ public class Library {
     private Map<Integer, User> registeredUsers = new LinkedHashMap<>();
     private List<Lending> activeLendings = new LinkedList<>();
     private Integer idCounter = 1;
+    private Integer isbnCounter = 1;
 
     public void addBook(Book book) {
+        if (book.getIsbn() == null || book.getIsbn().isEmpty()){
+            book.setIsbn("ISBN-" + String.format("%04d", isbnCounter));
+            isbnCounter++;
+        }
         availableBooks.add(book);
     }
 
@@ -19,7 +24,7 @@ public class Library {
         while (iteratorBooks.hasNext()){
             System.out.println("Title: " + next.getTitle() +
                     "Author: " + next.getAuthor() +
-                    "ISBN:" + next.getISBN() + "\n");
+                    "ISBN:" + next.getIsbn() + "\n");
         }
     }
 
@@ -35,13 +40,13 @@ public class Library {
     public Book findByISBN(String isbn){
         return availableBooks.stream()
                 //Filtra os livros para aquele cujo isbn é idêntico ao passado no parâmetro
-                .filter(book -> book.getISBN().equalsIgnoreCase(isbn))
+                .filter(book -> book.getIsbn().equalsIgnoreCase(isbn))
                 //retorna esse livro único já que o ISBN é um valor único para cada livro, caso não exista nenhum retornará null.
                 .findFirst().orElse(null);
     }
 
     public void removeBook(String isbn) {
-        availableBooks.removeIf(book -> book.getISBN().equalsIgnoreCase(isbn));
+        availableBooks.removeIf(book -> book.getIsbn().equalsIgnoreCase(isbn));
     }
 
     public void registrateUser(User user) {
@@ -56,7 +61,7 @@ public class Library {
 
     public void makeLoan(String isbnBook, Integer idUser) {
         Optional<Book> borrowedBook = availableBooks.stream()
-                .filter(book -> book.getISBN().equalsIgnoreCase(isbnBook))
+                .filter(book -> book.getIsbn().equalsIgnoreCase(isbnBook))
                 .findFirst();
 
         Optional<User> userLending = findUserById(idUser);
@@ -73,13 +78,13 @@ public class Library {
         //Stream que encontra dentro da Lista de empréstimos
         // o empréstimo cujo ISBN do livro é o mesmo do que queremos devolver (pesquisa única)
         Optional<Lending> lending = activeLendings.stream()
-                .filter(len -> len.getBook().getISBN().equalsIgnoreCase(isbn))
+                .filter(len -> len.getBook().getIsbn().equalsIgnoreCase(isbn))
                 .findFirst();
 
         //Stream que retorna o livro do empréstimo
         Optional<Book> returningBook = activeLendings.stream()
                 .map(Lending::getBook)
-                .filter(book -> book.getISBN().equalsIgnoreCase(isbn))
+                .filter(book -> book.getIsbn().equalsIgnoreCase(isbn))
                 .findFirst();
 
         //Stream que encontra o user no id passado como parâmetro
