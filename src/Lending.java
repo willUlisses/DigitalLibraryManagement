@@ -15,6 +15,12 @@ public class Lending {
         this.user = user;
     }
 
+    public Lending(Book book, User user) {
+        this.book = book;
+        this.lendingDate = LocalDate.now();
+        this.user = user;
+    }
+
     public Book getBook() {
         return book;
     }

@@ -1,19 +1,17 @@
-import java.util.Arrays;
 import java.util.Objects;
 
 public class User {
 
     private String name;
-    private int userId;
+    private Integer userId;
     private String email;
 
-    public User(String name, int userId, String email) {
+    public User(String name, String email) {
         this.name = name;
-        this.userId = userId;
         this.email = email;
     }
 
-    public int getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
@@ -33,7 +31,7 @@ public class User {
         this.name = name;
     }
 
-    public void setUserId(int userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
