@@ -98,5 +98,14 @@ public class Library {
         }
     }
 
+    public Set<Book> getAvailableBooks() {
+        return availableBooks;
+    }
 
+    public Integer getIdCounter() {
+        return idCounter;
+    }
+    public List<Lending> getActiveLendings() {
+        return activeLendings;
+    }
 }

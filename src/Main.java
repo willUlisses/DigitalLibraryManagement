@@ -1,10 +1,11 @@
+import java.sql.SQLOutput;
+import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
         Library library = new Library();
-
 
         String login = "admin";
         String senha = "admin123";
@@ -46,14 +47,61 @@ public class Main {
                     System.out.println("Informe o Autor do livro:");
                     String autor = scannerMenu.next();
                     library.addBook(new Book(titulo, autor));
+                    break;
                 case 2:
-                    // cadastro usuario
+                    System.out.println("Informe o Nome do Usuário:");
+                    String nome = scannerMenu.next();
+                    System.out.println("Agora Informe o Email do Usuário:");
+                    String email = scannerMenu.next();
+                    library.registrateUser(new User(nome, email));
+                    break;
                 case 3:
-                    //emprestimo de livro
+                    System.out.println("Abaixo estão os livros disponíveis para serem locados:");
+                    Iterator<Book> iteratorLivros = library.getAvailableBooks().iterator();
+                    Book next = iteratorLivros.next();
+                    while(iteratorLivros.hasNext()) {
+                        System.out.println("==============================================" +
+                                "Titulo: " + next.getTitle() + "\n" +
+                                "Autor: " + next.getAuthor() + "\n" +
+                                "ISBN: " + next.getIsbn() + "\n" +
+                                "==============================================\n");
+                    }
+                    System.out.println("\n\nInforme o ISBN do livro que você deseja locar:");
+                    String isbn = scannerMenu.next();
+                    System.out.println("Agora informe o id do usuário que está locando (existem usuários com id até "
+                    + library.getIdCounter());
+                    Integer id = scannerMenu.nextInt();
+                    library.makeLoan(isbn, id);
+                    System.out.println("\nO usuário " + library.findUserById(id) + " locou o livro " + library.findByISBN(isbn) + ".");
+                    break;
                 case 4:
-                    // devolução
+                    System.out.println("Abaixo estão os empréstimos ainda ativos:\n");
+                    for (Lending emprestimo : library.getActiveLendings()) {
+                        System.out.println("========================================================" + "\n" +
+                                "Livro: " + emprestimo.getBook().getTitle() + "\n" +
+                                "Nome do Usuário: " + emprestimo.getUser().getName() + "\n" +
+                                "ID do Usuário: " + emprestimo.getUser().getUserId() + "\n" +
+                                "========================================================\n");
+                    }
+
+                    System.out.println("\n\nInforme o ISBN do livro que será retornado:");
+                    String isbnRetorno = scannerMenu.next();
+                    System.out.println("Informe o id do usuário que locou o livro:");
+                    Integer idRetorno = scannerMenu.nextInt();
+                    library.returnBook(isbnRetorno,idRetorno);
+                    System.out.println("\nO usuário " + library.findUserById(idRetorno) + " devolveu o livro "
+                            + library.findByISBN(isbnRetorno) + ".");
                 case 5:
-                    // listar livros disponiveis
+                    System.out.println("Abaixo estão todos os livros disponíveis:\n");
+                    Iterator<Book> iteratorBooks = library.getAvailableBooks().iterator();
+                    Book nextBook = iteratorBooks.next();
+                    while(iteratorBooks.hasNext()) {
+                        System.out.println("==============================================" +
+                                "Titulo: " + nextBook.getTitle() + "\n" +
+                                "Autor: " + nextBook.getAuthor() + "\n" +
+                                "ISBN: " + nextBook.getIsbn() + "\n" +
+                                "==============================================\n");
+                    }
                 case 6:
                     //pesquisar usuario
                 case 7:
