@@ -22,9 +22,11 @@ public class Library {
         Iterator<Book> iteratorBooks = availableBooks.iterator();
         Book next = iteratorBooks.next();
         while (iteratorBooks.hasNext()){
-            System.out.println("Title: " + next.getTitle() +
-                    "Author: " + next.getAuthor() +
-                    "ISBN:" + next.getIsbn() + "\n");
+            System.out.println("==============================================" +
+                    "Title: " + next.getTitle() + "\n" +
+                    "Author: " + next.getAuthor() + "\n" +
+                    "ISBN:" + next.getIsbn() + "\n" +
+                    "==============================================\n");
         }
     }
 

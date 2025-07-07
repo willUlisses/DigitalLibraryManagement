@@ -57,15 +57,7 @@ public class Main {
                     break;
                 case 3:
                     System.out.println("Abaixo estão os livros disponíveis para serem locados:");
-                    Iterator<Book> iteratorLivros = library.getAvailableBooks().iterator();
-                    Book next = iteratorLivros.next();
-                    while(iteratorLivros.hasNext()) {
-                        System.out.println("==============================================" +
-                                "Titulo: " + next.getTitle() + "\n" +
-                                "Autor: " + next.getAuthor() + "\n" +
-                                "ISBN: " + next.getIsbn() + "\n" +
-                                "==============================================\n");
-                    }
+                    library.showAllBooks();
                     System.out.println("\n\nInforme o ISBN do livro que você deseja locar:");
                     String isbn = scannerMenu.next();
                     System.out.println("Agora informe o id do usuário que está locando (existem usuários com id até "
@@ -93,19 +85,35 @@ public class Main {
                             + library.findByISBN(isbnRetorno) + ".");
                 case 5:
                     System.out.println("Abaixo estão todos os livros disponíveis:\n");
-                    Iterator<Book> iteratorBooks = library.getAvailableBooks().iterator();
-                    Book nextBook = iteratorBooks.next();
-                    while(iteratorBooks.hasNext()) {
-                        System.out.println("==============================================" +
-                                "Titulo: " + nextBook.getTitle() + "\n" +
-                                "Autor: " + nextBook.getAuthor() + "\n" +
-                                "ISBN: " + nextBook.getIsbn() + "\n" +
-                                "==============================================\n");
-                    }
+                    library.showAllBooks();
                 case 6:
-                    //pesquisar usuario
+                    System.out.println("Existem usuários com o id de 1 até " + library.getIdCounter() + ", informe" +
+                            " o ID do usuário que você deseja encontrar:");
+                    Integer searchID = scannerMenu.nextInt();
+                    System.out.println("O Usuário encontrado foi: " + library.findUserById(searchID));
                 case 7:
-                    //pesquisar livro
+                    System.out.println("Escolha qual maneira você irá utilizar para encontrar o livro:\n");
+                    int repeat = 1;
+                    do {
+                        System.out.println("[1] - Usar ISBN.\n" +
+                                "[2] - Usar Título do Livro.");
+                        int escolha = scannerMenu.nextInt();
+                        if (escolha == 1) {
+                            System.out.println("Qual o ISBN do livro que você quer encontrar?");
+                            String isbnSearch = scannerMenu.next();
+                            System.out.println(library.findByISBN(isbnSearch));
+                            repeat = 0;
+                        } else if (escolha == 2) {
+                            System.out.println("Qual o Título do livro que você deseja encontrar?");
+                            String titleSearch = scannerMenu.next();
+                            System.out.println("O Livro encontrado foi: " + library.findByTitle(titleSearch));
+                            repeat = 0;
+                        } else {
+                            System.out.println("Opção inválida tente novamente.\n");
+                            return;
+                        }
+                    } while (repeat == 1);
+                    break;
                 case 0:
                     System.out.println("Encerrando o Programa...");
                     repetir = 1;
