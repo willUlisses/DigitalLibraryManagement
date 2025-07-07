@@ -1,5 +1,3 @@
-import java.sql.SQLOutput;
-import java.util.Iterator;
 import java.util.Scanner;
 
 public class Main {
@@ -57,10 +55,10 @@ public class Main {
                 case 3:
                     System.out.println("Abaixo estão os livros disponíveis para serem locados:");
                     library.showAllBooks();
-                    System.out.println("\n\nInforme o ISBN do livro que você deseja locar:");
+                    System.out.println("\nInforme o ISBN do livro que você deseja locar:");
                     String isbn = scannerMenu.next();
-                    System.out.println("Agora informe o id do usuário que está locando (existem usuários com id até "
-                    + library.getIdCounter());
+                    System.out.println("Agora informe o id do usuário que está locando (existem usuários com id até -"
+                    + library.getIdCounter() + "- )");
                     Integer id = scannerMenu.nextInt();
                     library.makeLoan(isbn, id);
                     System.out.println("\nO usuário " + library.findUserById(id) + " locou o livro " + library.findByISBN(isbn) + ".");
@@ -75,7 +73,7 @@ public class Main {
                                 "========================================================\n");
                     }
 
-                    System.out.println("\n\nInforme o ISBN do livro que será retornado:");
+                    System.out.println("\nInforme o ISBN do livro que será retornado:");
                     String isbnRetorno = scannerMenu.next();
                     System.out.println("Informe o id do usuário que locou o livro:");
                     Integer idRetorno = scannerMenu.nextInt();
