@@ -23,7 +23,6 @@ public class Main {
                 System.out.println(" Login ou senha incorretos, tente novamente.\n");
             } else {
                 System.out.println("Login bem sucedido!\n");
-                scanner.close();
             }
         } while (!loginIn.equals(login) || !senhaIn.equals(senha));
 
@@ -32,12 +31,12 @@ public class Main {
         int opt;
         do {
             System.out.println("=== Menu Bilbioteca ===\n" +
-                    "[1] Cadastrar Livro" +
-                    "[2] Cadastrar Usuario" +
-                    "[3] Locar um Livro" +
-                    "[4] Devolver Livro" +
-                    "[5] Ver Livros Disponíveis" +
-                    "[6] Pesquisar Usuario" +
+                    "[1] Cadastrar Livro\n" +
+                    "[2] Cadastrar Usuario\n" +
+                    "[3] Locar um Livro\n" +
+                    "[4] Devolver Livro\n" +
+                    "[5] Ver Livros Disponíveis\n" +
+                    "[6] Pesquisar Usuario\n" +
                     "[7] Pesquisar um Livro");
             opt = scannerMenu.nextInt();
             switch (opt) {
@@ -83,14 +82,17 @@ public class Main {
                     library.returnBook(isbnRetorno,idRetorno);
                     System.out.println("\nO usuário " + library.findUserById(idRetorno) + " devolveu o livro "
                             + library.findByISBN(isbnRetorno) + ".");
+                    break;
                 case 5:
                     System.out.println("Abaixo estão todos os livros disponíveis:\n");
                     library.showAllBooks();
+                    break;
                 case 6:
                     System.out.println("Existem usuários com o id de 1 até " + library.getIdCounter() + ", informe" +
                             " o ID do usuário que você deseja encontrar:");
                     Integer searchID = scannerMenu.nextInt();
                     System.out.println("O Usuário encontrado foi: " + library.findUserById(searchID));
+                    break;
                 case 7:
                     System.out.println("Escolha qual maneira você irá utilizar para encontrar o livro:\n");
                     int repeat = 1;

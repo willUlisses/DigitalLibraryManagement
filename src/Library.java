@@ -20,9 +20,9 @@ public class Library {
 
     public void showAllBooks() {
         Iterator<Book> iteratorBooks = availableBooks.iterator();
-        Book next = iteratorBooks.next();
         while (iteratorBooks.hasNext()){
-            System.out.println("==============================================" +
+            Book next = iteratorBooks.next();
+            System.out.println("==============================================\n" +
                     "Title: " + next.getTitle() + "\n" +
                     "Author: " + next.getAuthor() + "\n" +
                     "ISBN:" + next.getIsbn() + "\n" +
